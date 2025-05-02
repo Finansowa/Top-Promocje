@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopPromocje - Najlepsze Oferty Gier i Zakupów Online</title>
+    <meta name="description" content="Odkryj ekskluzywne promocje na gry PC, konsole oraz niesamowite okazje w Temu. Oszczędzaj do 90% z naszymi linkami partnerskimi!">
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #2ecc71;
+            --text: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: var(--text);
+            line-height: 1.7;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary), #1a1a2e);
+            color: white;
+            padding: 3rem 0 4rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+        }
+        
+        header::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            left: -30px;
+            width: 300px;
+            height: 300px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px 25px;
+            border-radius: 8px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Nawigacja */
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Sekcje ofert */
+        .section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--secondary);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Karty ofert */
+        .offers {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .offer-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .offer-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--accent);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .offer-image {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .offer-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .offer-card:hover .offer-image img {
+            transform: scale(1.1);
+        }
+        
+        .offer-content {
+            padding: 20px;
+        }
+        
+        .offer-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .offer-description {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .offer-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .current-price {
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 1.3rem;
+            margin-right: 10px;
+        }
+        
+        .original-price {
+            text-decoration: line-through;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .discount {
+            background: var(--success);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(41, 128, 185, 0.3);
+        }
+        
+        .btn-block {
+            display: block;
+        }
+        
+        /* Sekcja CTA */
+        .cta {
+            background: linear-gradient(135deg, var(--secondary), #1a1a2e);
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .cta .btn {
+            background: white;
+            color: var(--secondary);
+            font-size: 1.1rem;
+            padding: 15px 40px;
+            display: inline-block;
+            width: auto;
+        }
+        
+        .cta .btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        /* Stopka */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bdc3c7;
+            font-size: 0.9rem;
+        }
+        
+        /* Disclaimer */
+        .disclaimer {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 40px 0;
+            color: var(--text-light);
+            border-left: 5px solid var(--primary);
+        }
+        
+        .disclaimer h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .disclaimer ul {
+            padding-left: 20px;
+            margin: 15px 0;
+        }
+        
+        .disclaimer li {
+            margin-bottom: 8px;
+        }
+        
+        /* Responsywność */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .stats {
+                gap: 15px;
+            }
+            
+            .stat-item {
+                padding: 10px 15px;
+            }
+            
+            .section {
+                padding: 40px 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .offers {
+                grid-template-columns: 1fr;
+            }
+            
+            header {
+                padding: 2rem 0 3rem;
+            }
+            
+            .logo {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Top<span>Promocje</span></a>
+            <p class="tagline">Odkryj najlepsze oferty gier i zakupów online. Oszczędzaj pieniądze z naszymi ekskluzywnymi promocjami!</p>
+            
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Zadowolonych klientów</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-label">Średnia oszczędność</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24h</div>
+                    <div class="stat-label">Wsparcie techniczne</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">Top<span>Promocje</span></div>
+            <div class="nav-links">
+                <a href="#gry">Gry</a>
+                <a href="#temu">Temu</a>
+                <a href="#jak-dziala">Jak to działa?</a>
+                <a href="#kontakt">Kontakt</a>
+            </div>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <section id="gry" class="section">
+            <div class="section-title">
+                <h2>Najlepsze Oferty Gier</h2>
+            </div>
+            <p class="section-subtitle">Odkryj ekskluzywne promocje na gry komputerowe i konsolowe. Klucze Steam, Origin, Uplay i wiele więcej!</p>
+            
+            <div class="offers">
+                <div class="offer-card">
+                    <div class="offer-badge">HIT!</div>
+                    <div class="offer-image">
+                        <img src="https://images.kinguin.net/category/hero/5/5f8a3b3d1fe6a.jpg" alt="Gry PC">
+                    </div>
+                    <div class="offer-content">
+                        <h3 class="offer-title">Gry PC w Super Cenach</h3>
+                        <p class="offer-description">Tysiące gier na platformę Steam w cenach nawet do 70% niższych niż w oficjalnym sklepie.</p>
+                        <div class="offer-price">
+                            <span class="current-price">od 19.99 zł</span>
+                            <span class="original-price">69.99 zł</span>
+                            <span class="discount">-71%</span>
+                        </div>
+                        <a href="https://kinguin.net/?r=66e41945809e5" class="btn" target="_blank" rel="noopener">Zobacz Oferty</a>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-badge">NOWOŚĆ</div>
+                    <div class="offer-image">
+                        <img src="https://images.kinguin.net/category/hero/5/5f8a3b3d1fe6a.jpg" alt="Gry Konsolowe">
+                    </div>
+                    <div class="offer-content">
+                        <h3 class="offer-title">Gry na PlayStation 5</h3>
+                        <p class="offer-description">Najnowsze tytuły na PS5 w cenach, które Cię zaskoczą. Premie i dodatki w zestawie!</p>
+                        <div class="offer-price">
+                            <span class="current-price">od 129.99 zł</span>
+                            <span class="original-price">299.00 zł</span>
+                            <span class="discount">-57%</span>
+                        </div>
+                        <a href="https://kinguin.net/?r=66e41945809e5" class="btn" target="_blank" rel="noopener">Kup Teraz</a>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-badge">PROMOCJA</div>
+                    <div class="offer-image">
+                        <img src="https://images.kinguin.net/category/hero/5/5f8a3b3d1fe6a.jpg" alt="Subskrypcje Gamingowe">
+                    </div>
+                    <div class="offer-content">
+                        <h3 class="offer-title">Xbox Game Pass Ultimate</h3>
+                        <p class="offer-description">Dostęp do setek gier na konsolę i PC. Najlepsza oferta na rynku - sprawdź sam!</p>
+                        <div class="offer-price">
+                            <span class="current-price">89.99 zł</span>
+                            <span class="original-price">139.00 zł</span>
+                            <span class="discount">-35%</span>
+                        </div>
+                        <a href="https://kinguin.net/?r=66e41945809e5" class="btn" target="_blank" rel="noopener">Aktywuj Subskrypcję</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="temu" class="section">
+            <div class="section-title">
+                <h2>Niesamowite Oferty Temu</h2>
+            </div>
+            <p class="section-subtitle">Wyjątkowe promocje tylko dla nowych użytkowników. Odbierz swoje kupony i prezenty już dziś!</p>
+            
+            <div class="offers">
+                <div class="offer-card">
+                    <div class="offer-badge">LIMITOWANE</div>
+                    <div class="offer-image">
+                        <img src="https://img.temu.com/images/upload/2023/09/15/13/13d9a8e9-3b3a-4f1a-9b0a-9b0a9b0a9b0a.jpg" alt="Pakiet kuponów Temu">
+                    </div>
+                    <div class="offer-content">
+                        <h3 class="offer-title">400zł Pakiet Kuponów</h3>
+                        <p class="offer-description">Specjalna oferta dla nowych użytkowników - otrzymaj pakiet kuponów o wartości 400zł na pierwsze zakupy!</p>
+                        <div class="offer-price">
+                            <span class="current-price">0.00 zł</span>
+                        </div>
+                        <a href="https://temu.to/k/en8ccn5fc6u" class="btn" target="_blank" rel="noopener">Odbierz Kupony</a>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-badge">GRATIS</div>
+                    <div class="offer-image">
+                        <img src="https://img.temu.com/images/upload/2023/09/15/13/13d9a8e9-3b3a-4f1a-9b0a-9b0a9b0a9b0a.jpg" alt="Darmowe prezenty Temu">
+                    </div>
+                    <div class="offer-content">
+                        <h3 class="offer-title">0zł Prezenty</h3>
+                        <p class="offer-description">Nowi użytkownicy mogą wybrać darmowe prezenty - od elektroniki po modę i akcesoria!</p>
+                        <div class="offer-price">
+                            <span class="current-price">Darmowe</span>
+                        </div>
+                        <a href="https://temu.to/k/eksha984tx7" class="btn" target="_blank" rel="noopener">Wybierz Prezent</a>
+                    </div>
+                </div>
+                
+                <div class="offer-card">
+                    <div class="offer-badge">OSZCZĘDNOŚCI</div>
+                    <div class="offer-image">
+                        <img src="https://img.temu.com/images/upload/2023/09/15/13/13d9a8e9-3b3a-4f1a-9b0a-9b0a9b0a9b0a.jpg" alt="Oszczędności Temu">
+                    </div>
+                    <div class="offer-content">
+                        <h3 class="offer-title">Duże Oszczędności</h3>
+                        <p class="offer-description">Tysiące produktów w cenach hurtowych. Rabaty do 90% na elektronikę, modę i dom!</p>
+                        <div class="offer-price">
+                            <span class="current-price">Rabaty do 90%</span>
+                        </div>
+                        <a href="https://temu.to/k/e2ewu31h3pi" class="btn" target="_blank" rel="noopener">Zobacz Oferty</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="jak-dziala" class="section">
+            <div class="disclaimer">
+                <h3>Jak działają nasze linki partnerskie?</h3>
+                <p>Korzystanie z naszej strony jest całkowicie darmowe, a Ty nie ponosisz żadnych dodatkowych kosztów. Oto jak to działa:</p>
+                <ul>
+                    <li><strong>Klikasz</strong> w interesującą Cię ofertę - zostaniesz przekierowany do oficjalnego sklepu</li>
+                    <li><strong>Dokonujesz zakupu</strong> w normalny sposób, tak jak zawsze</li>
+                    <li><strong>Sklep rozpoznaje</strong>, że pochodzisz z naszej strony i przekaże nam niewielką prowizję</li>
+                    <li><strong>Dla Ciebie cena pozostaje taka sama</strong> (a często nawet niższa dzięki specjalnym kodom!)</li>
+                </ul>
+                <p>Dziękujemy za wsparcie naszej strony! To pozwala nam dalej dostarczać Ci najlepsze oferty.</p>
+            </div>
+        </section>
+        
+        <section class="cta">
+            <div class="container">
+                <h2>Gotowy, aby zacząć oszczędzać?</h2>
+                <p>Dołącz do tysięcy zadowolonych klientów, którzy już oszczędzają z naszymi ekskluzywnymi ofertami.</p>
+                <a href="#gry" class="btn">Zobacz Promocje</a>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TopPromocje</h3>
+                    <p>Najlepsze oferty gier i zakupów online. Oszczędzaj z nami pieniądze każdego dnia!</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Kategorie</h3>
+                    <ul class="footer-links">
+                        <li><a href="#gry">Gry PC</a></li>
+                        <li><a href="#gry">Gry Konsolowe</a></li>
+                        <li><a href="#temu">Promocje Temu</a></li>
+                        <li><a href="#temu">Kupony Rabatowe</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Informacje</h3>
+                    <ul class="footer-links">
+                        <li><a href="#jak-dziala">Jak to działa?</a></li>
+                        <li><a href="#">Polityka Prywatności</a></li>
+                        <li><a href="#">Warunki Korzystania</a></li>
+                        <li><a href="#kontakt">Kontakt</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column" id="kontakt">
+                    <h3>Kontakt</h3>
+                    <ul class="footer-links">
+                        <li>Email: kontakt@toppromocje.pl</li>
+                        <li>Telefon: +48 123 456 789</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 TopPromocje.pl - Wszelkie prawa zastrzeżone</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
